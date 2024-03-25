@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Pessoa</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="estilo.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4"> Cadastro de Personagem </h1>
+        <form action="/adicionar_personagem" method="POST">
+            <div class="form-group">
+                <label for="nome"> Nome: </label>
+                <input type="text" class="form-control" id="nome" name="nome"value="{{nome}}" required>
+            </div>
+            <div class="form-group">
+                <label for="personagem"> Personagem: </label>
+                <input type="text" class="form-control" id="personagem" name="personagem" value="{{personagem}}" required>
+            </div>
+            <div class="form-group">
+                <label for="origem"> Origem </label>
+                <select class="form-control" id="origem" name="origem">
+                    <option>-----Reino de Origem-----</option>
+                    <option value="Imperial" {% if origem=='Imperial' %} selected {% endif %}>Imperial</option>
+                    <option value="Rhodoks" {% if origem=='Rhodoks' %} selected {% endif %}>Rhodoks</option>
+                    <option value="Nórdicos" {% if origem=='Nórdicos' %} selected {% endif %}>Nórdicos</option>
+                    <option value="Extremo Norte" {% if origem=='Extremo Norte' %} selected {% endif %}>Extremo Norte
+                    </option>
+                    <option value="Khergits" {% if origem=='Khergits' %} selected {% endif %}>Khergits</option>
+                    <option value="Sarranids" {% if origem=='Sarranids' %} selected {% endif %}>Sarranids</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" name="salvar" value="salvar">  
+         
+        </form>
+    </div>
+</body>
+
+</html>
