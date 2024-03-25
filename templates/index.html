@@ -1,51 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends 'layout.html' %}
+{% block body %}
+<div class="row">
+<h3 class='text-center text-muted mb-3'></h3>
+<p class="text-right"><a href="{{url_for('add_user')}}" class="btn btn-success">+Novo Cadastro</a></p>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Idade</th>
+        <th scope="col">Rua</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Número</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in datas %}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td>{{row.NOME}}</td>
+        <td>{{row.IDADE}}</td>
+        <td>{{row.RUA}}</td>
+        <td>{{row.CIDADE}}</td>
+        <td>{{row.NUMERO}}</td>
+        <td>{{row.ESTADO}}</td>
+        <td><a href="{{url_for('edit_user',id=row.ID)}}" class="btn btn-primary">Editar</a></td>
+        <td><a href="{{url_for('delete_user',id=row.ID)}}" class="btn btn-danger" onclick="return confirm ('Tem certeza que deseja apagar?')">Deletar</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> RPG - Mesa Teste </title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="estilo.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4"> Lista de Personagem </h1>
-        <div class="mb-4">
-            <a href="{{ url_for('adicionar_personagem') }} " class="btn btn-primary">Adicionar</a>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th> ID </th>
-                    <th> Nome </th>
-                    <th> Personagem </th>
-                    <th> Origem </th>
-                    <th> Ações </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for id, personagem in dados.items() %}
-                <tr>
-                    <td>{{id}}</td>
-                    <td>{{personagem['nome'] }}</td>
-                    <td>{{personagem['personagem'] }}</td>
-                    <td>{{personagem['origem'] }}</td>
-                    <td>
-                        <br>
-                        <form action="{{ url_for('excluir_personagem',id=id) }}" method="POST">
-                            <button type="submit" class="btn btn-danger">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+{% endblock %}
