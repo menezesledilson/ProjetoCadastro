@@ -43,7 +43,7 @@ def edit_user(id):
      
         con = sql.connect("banco_db.db")
         cur=con.cursor()
-        cur.execute("update users set NOME=?,IDADE=?,RUA=?,CIDADE=?,NUMERO=?,ESTADO=?, where ID=?", (nome,idade,rua,cidade,numero,estado,id))
+        cur.execute("update users set NOME=?,IDADE=?,RUA=?,CIDADE=?,NUMERO=?,ESTADO=? where ID=?", (nome,idade,rua,cidade,numero,estado,id))
         con.commit()
         flash("Dados atualizados", "success")
         return redirect(url_for("index"))
